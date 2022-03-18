@@ -13,14 +13,17 @@ import lombok.ToString;
 @Data
 @ToString
 @Entity
-@Table(name = "RISKS")
-public class Risks {
+@Table(name = "PATIENT_RISK")
+public class PatientRisk {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "RISK_NAME")
-	private String riskName;
+	@Column(name = "PATIENT_DOCUMENT")
+	private Long document;
+
+	@Column(name = "RISK_ID")
+	private Long riskId;
 }

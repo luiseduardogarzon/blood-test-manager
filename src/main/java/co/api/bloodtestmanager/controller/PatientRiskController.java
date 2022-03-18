@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.api.bloodtestmanager.entity.Patient;
-import co.api.bloodtestmanager.service.PatientService;
+import co.api.bloodtestmanager.entity.PatientRisk;
+import co.api.bloodtestmanager.service.PatientRiskService;
 
 @RestController
-public class PatientController {
+public class PatientRiskController {
 
 	@Autowired
-	private PatientService patientService;
+	private PatientRiskService patientRiskService;
 
-	@PostMapping("patient")
-	public ResponseEntity<Patient> savePatient(@Valid @RequestBody Patient patient) {
-		return new ResponseEntity<Patient>(this.patientService.savePatient(patient), HttpStatus.CREATED);
+	@PostMapping("/patientrisk")
+	public ResponseEntity<PatientRisk> savePatientRisk(@Valid @RequestBody PatientRisk patientRisk) {
+		return new ResponseEntity<PatientRisk>(this.patientRiskService.savePatientRisk(patientRisk),
+				HttpStatus.CREATED);
 	}
 }
