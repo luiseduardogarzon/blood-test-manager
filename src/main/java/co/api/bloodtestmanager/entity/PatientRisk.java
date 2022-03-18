@@ -2,11 +2,16 @@ package co.api.bloodtestmanager.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.ToString;
@@ -25,24 +30,28 @@ public class PatientRisk {
 	@NotNull
 	@Column(name = "PATIENT_DOCUMENT")
 	private Long document;
-	
+
 	@NotNull
 	@Column(name = "SUGAR_PERCENT")
 	private Double sugarPercentage;
-	
+
 	@NotNull
 	@Column(name = "FAT_PERCENT")
 	private Double fatPercentage;
-	
+
 	@NotNull
 	@Column(name = "OXYGEN_PERCENT")
 	private Double oxygenPercentage;
-	
+
 	@NotNull
 	@Column(name = "DISEASE_ID")
 	private Long diseaseId;
 
-	@NotNull
+	@JsonIgnore
 	@Column(name = "RISK_ID")
 	private Long riskId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PATIENT_ID")
+	private Patient patient;
 }
