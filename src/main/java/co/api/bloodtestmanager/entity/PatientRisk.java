@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,19 +31,28 @@ public class PatientRisk {
 	private Long id;
 
 	@NotNull
-	@Column(name = "PATIENT_DOCUMENT")
+	@Transient
+	@NotNull(message = "Document should not be null")
 	private Long document;
 
-	@NotNull
 	@Column(name = "SUGAR_PERCENT")
+	@NotNull(message = "Sugar percentage should not be null")
+	@Min(value = 0, message = "Sugar percentage should be greater than 0")
+	@Max(value = 100, message = "Sugar percentage should be smaller 100")
 	private Double sugarPercentage;
 
 	@NotNull
 	@Column(name = "FAT_PERCENT")
+	@NotNull(message = "Fat percentage should not be null")
+	@Min(value = 0, message = "Fat percentage should be greater than 0")
+	@Max(value = 100, message = "Fat percentage should be smaller 100")
 	private Double fatPercentage;
 
 	@NotNull
 	@Column(name = "OXYGEN_PERCENT")
+	@NotNull(message = "Oxygen percentage should not be null")
+	@Min(value = 0, message = "Oxygen percentage should be greater than 0")
+	@Max(value = 100, message = "Oxygen percentage should be smaller 100")
 	private Double oxygenPercentage;
 
 	@NotNull

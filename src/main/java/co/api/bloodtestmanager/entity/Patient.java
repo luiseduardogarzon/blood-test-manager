@@ -13,6 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.ToString;
@@ -28,25 +31,28 @@ public class Patient {
 	@Column(name = "ID")
 	private Long id;
 
+	@NotNull(message = "Document should not be null")
 	@Column(name = "DOCUMENT")
 	private Long document;
 
-	@NotBlank
+	@NotBlank(message = "Name should not be empty")
 	@Column(name = "NAME")
 	private String name;
 
-	@NotBlank
+	@NotBlank(message = "Last Name should not be empty")
 	@Column(name = "LAST_NAME")
 	private String lastName;
 
+	@NotNull(message = "Age should not be null")
 	@Column(name = "AGE")
 	private Integer age;
 
 	@Email
-	@NotBlank
+	@NotBlank(message = "Email should not be empty")
 	@Column(name = "EMAIL")
 	private String email;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", fetch = FetchType.LAZY)
 	private List<PatientRisk> patientRiskList;
 }
