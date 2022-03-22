@@ -29,6 +29,6 @@ public class Disease {
 	@Column(name = "DISEASE_NAME")
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "disease", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "disease", fetch = FetchType.EAGER)
 	private List<Risk> riskList;
 }

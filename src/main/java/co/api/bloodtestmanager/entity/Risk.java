@@ -35,6 +35,6 @@ public class Risk {
 	@JoinColumn(name = "DISEASE_ID")
 	private Disease disease;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "risk", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "risk", fetch = FetchType.EAGER)
 	private List<RiskLevel> riskLevelList;
 }

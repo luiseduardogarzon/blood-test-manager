@@ -1,5 +1,7 @@
 package co.api.bloodtestmanager.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +15,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -66,4 +70,9 @@ public class PatientRisk {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PATIENT_ID")
 	private Patient patient;
+
+	@JsonIgnore
+	@CreationTimestamp
+	@Column(name = "CREATED_AT", nullable = false, updatable = false)
+	private Date createdAt;
 }

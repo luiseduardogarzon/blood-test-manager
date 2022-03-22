@@ -53,6 +53,6 @@ public class Patient {
 	private String email;
 
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", fetch = FetchType.EAGER)
 	private List<PatientRisk> patientRiskList;
 }

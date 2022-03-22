@@ -33,7 +33,7 @@ public class RiskLevel {
 	@Column(name = "HIGH_VALUE")
 	private Double highValue;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "RISK_ID")
 	private Risk risk;
 }
